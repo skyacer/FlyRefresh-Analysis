@@ -2,7 +2,7 @@ FlyRefresh 源码解析
 ====================================
 
 > 本文为 [FlyRefresh](https://github.com/android-cn/android-open-project-analysis) 中 FlyRefresh 部分  
-> 项目地址：[FlyRefresh](https://github.com/race604/FlyRefresh)，分析的版本：[5299e8b](https://github.com/race604/FlyRefresh/commit/5299e8b969aab63fc1fde0a5423b19a61cded53b "Commit id is 5299e8b969aab63fc1fde0a5423b19a61cded53b]")，Demo 地址：[fly-refresh-demo](https://github.com/aosp-exchange-group/android-open-project-demo/tree/master/fly-refresh-demo)  
+> 项目地址：[FlyRefresh](https://github.com/race604/FlyRefresh)，分析的版本：[5299e8b](https://github.com/race604/FlyRefresh/commit/5299e8b969aab63fc1fde0a5423b19a61cded53b "Commit id is 5299e8b969aab63fc1fde0a5423b19a61cded53b]")，Demo 地址：[fly-refresh-demo](https://github.com/skyacer/FlyRefresh-Analysis/tree/master/FlyRefresh-demo)  
 
 > 分析者：[skyacer](http://github.com/skyacer)，分析状态：未完成
 

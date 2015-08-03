@@ -101,7 +101,7 @@ convert -coalesce animation.gif frame.png
 
 >>`HeaderController`是控制刷新框架头部移动的类
 
->>>`HeaderController`主要涉及到手指滑动头部的移动以及相对于正常位置时偏移量的改变
+>>>`HeaderController`主要涉及到手指滑动头部的移动以及相对于正常位置时偏移量的改变，并且高度是由最顶部往下递增的。
 
 >>>**(1) 主要成员变量含义**  
 
@@ -122,7 +122,7 @@ convert -coalesce animation.gif frame.png
 >>>**(2) 主要方法含义**  
 >>>
 
-1.`public int willMove(float deltaY)` 返回相对于normal位置需要移动的y方向的偏移量
+1.`public int willMove(float deltaY)` 返回相对于normal位置需要移动的y方向的偏移量，在这个方法中如果偏移量加上初始位置大于正常位置时，偏移量会增加两倍，往上的速度也会相应增加，反之，如果偏移量加上初始位置小于正常位置，往下的偏移量会减少两倍，往下的速度也会相应减少。虽然有点难以理解，但能看到的是刷新框架在振动时，往上振动的力度要大于往下振动的力度，但最终仍会趋于正常位置。
 
 2.`public boolean isOverHeight()` 判断当前位置是否在normal位置以下
 
@@ -130,3 +130,5 @@ convert -coalesce animation.gif frame.png
 
 4.`public boolean needSendRefresh()` 判断是否需要开始刷新了(当下拉移动百分比超过0.9f即刷新)
 
+>>>`PullHeaderLayout`
+这是一个基类，主要实现了布局和滑动的功能。

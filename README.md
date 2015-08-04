@@ -130,5 +130,20 @@ convert -coalesce animation.gif frame.png
 
 4.`public boolean needSendRefresh()` 判断是否需要开始刷新了(当下拉移动百分比超过0.9f即刷新)
 
->>>`PullHeaderLayout`
-这是一个基类，主要实现了布局和滑动的功能。
+
+>#### 2.[`PullHeaderLayout`](https://github.com/race604/FlyRefresh/blob/master/library/src/main/java/com/race604/flyrefresh/PullHeaderLayout.java)
+
+>>这是一个基类，主要实现了布局和滑动的功能。
+
+>>>**(1) 主要成员变量含义**  
+
+>>>
+
+1.`STATE_IDLE` 闲置状态
+
+2.`STATE_DRAGE` 拉拽状态
+ 
+3.`STATE_FLING` 手指离开屏幕但屏幕还在移动
+
+4.`STATE_BOUNCE` 上下振动状态
+

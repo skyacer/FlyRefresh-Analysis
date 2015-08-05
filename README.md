@@ -133,9 +133,9 @@ convert -coalesce animation.gif frame.png
 
 >#### 2.[`PullHeaderLayout`](https://github.com/race604/FlyRefresh/blob/master/library/src/main/java/com/race604/flyrefresh/PullHeaderLayout.java)
 
->>这是一个基类，主要实现了布局和滑动的功能。
+>>这是一个基类，主要实现了布局和滑动的功能。这个基类继承自`ViewGroup`,而`ViewGroup`可以包括其他视图，它是一个视图的集合，对应到这个框架上来，也定义了最重要的两个子视图，一个是固定悬浮按钮`FloatingActionButton`还有一个纸飞机的`ImageView`
 
->>>**(1) 主要成员变量含义**  
+>>>**(1) 主要成员变量和常量含义**  
 
 >>>
 
@@ -147,3 +147,7 @@ convert -coalesce animation.gif frame.png
 
 4.`STATE_BOUNCE` 上下振动状态
 
+>>>**(2) 主要方法含义**  
+>>>
+
+1.`public void setActionDrawable(Drawable actionDrawable)` 这个方法初始化了用到的视图，固定悬浮按钮和纸飞机。

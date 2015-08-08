@@ -159,4 +159,15 @@ convert -coalesce animation.gif frame.png
 
 1.`public void setActionDrawable(Drawable actionDrawable)` 这个方法初始化了用到的视图，固定悬浮按钮和纸飞机。
 
-2.`protected void onFinishInflate()`这个方法是渲染视图结束时的回调，这里对两个子视图`mHead`和`mContent`进行了处理，保证了子视图数量在两个以内，并且保证了`mHead`和`mContent`保持对子视图的引用。
+2.`protected void onFinishInflate()`这个方法是渲染视图结束时的回调，这里对两个子视图`mHead`和`mContent`进行了处理，保证了子视图数量在两个以内，并且保证了`mHead`和`mContent`保持对子视图的引用。 
+
+3.`public boolean dispatchTouchEvent(MotionEvent ev)`这个方法显然是对触摸事件的分发，这里着重说一下`ACTION_DOWN`和`ACTION_MOVE`两种情况，第一种`ACTION_DOWN`的时候它会判断控件是不是在上下振动的状态，如果是则立刻停止，这一点很符合我们的习惯。然后是`ACTION_MOVE`,这里做了之前提到的拦截Touch事件的处理：
+>```  java
+     if (!mHeaderController.isInTouch()) {
+      mHeaderController.onTouchDown(ev.getX(), ev.getY());
+      offsetY = mHeaderController.getOffsetY();
+      }
+     willMovePos(offsetY);
+
+>```
+这一段代码也就是当recyclerView到顶部以后要进入刷新头部时候执行的。

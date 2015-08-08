@@ -170,4 +170,11 @@ convert -coalesce animation.gif frame.png
      willMovePos(offsetY);
 
 >```
-这一段代码也就是当recyclerView到顶部以后要进入刷新头部时候执行的。
+这一段代码也就是当recyclerView到顶部以后要进入刷新头部时候执行的。其中最重要的还是`willMovePos(offsetY)`，这个方法把偏移量`offsetY`传给`willMovePos`然后再通过`private void movePos(float delta)`传给头部子视图。
+
+>#### 3.[`FlyRefreshLayout`](https://github.com/race604/FlyRefresh/blob/master/library/src/main/java/com/race604/flyrefresh/FlyRefreshLayout.java)
+
+>>这个类是继承于`PullHeaderLayout`，这个类主要为了简化使用，在这个类中添加了动画头部`MountanScenceView `和刷新的接口`OnPullRefreshListener`，这个类中实现了对纸飞机动画的实现，其中包括三个步骤：
+1. 随着下拉，逆时针转动；
+2. 放手的时候，触发刷新，发射出去；
+3. 刷新完成，飞机飞回来，回到原来的位置。

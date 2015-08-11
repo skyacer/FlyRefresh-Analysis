@@ -161,7 +161,7 @@ convert -coalesce animation.gif frame.png
 
 2.`protected void onFinishInflate()`这个方法是渲染视图结束时的回调，这里对两个子视图`mHead`和`mContent`进行了处理，保证了子视图数量在两个以内，并且保证了`mHead`和`mContent`保持对子视图的引用。 
 
-3.`public boolean dispatchTouchEvent(MotionEvent ev)`这个方法显然是对触摸事件的分发，这里着重说一下`ACTION_DOWN`和`ACTION_MOVE`两种情况，第一种`ACTION_DOWN`的时候它会判断控件是不是在上下振动的状态，如果是则立刻停止，这一点很符合我们的习惯。然后是`ACTION_MOVE`,这里做了之前提到的拦截Touch事件的处理：
+3.`public boolean dispatchTouchEvent(MotionEvent ev)`这个方法显然是对触摸事件的分发，这里着重说一下`ACTION_DOWN`和`ACTION_MOVE`两种情况，第一种`ACTION_DOWN`的时候它会判断控件是不是在上下振动的状态，如果是则立刻停止，这一点很符合我们的习惯。然后是`ACTION_MOVE`,这里做了之前提到的在`dispatchTouchEvent中`拦截Touch事件的处理：
 >```  java
      if (!mHeaderController.isInTouch()) {
       mHeaderController.onTouchDown(ev.getX(), ev.getY());
@@ -170,7 +170,7 @@ convert -coalesce animation.gif frame.png
      willMovePos(offsetY);
 
 >```
-这一段代码也就是当recyclerView到顶部以后要进入刷新头部时候执行的。其中最重要的还是`willMovePos(offsetY)`，这个方法把偏移量`offsetY`传给`willMovePos`然后再通过`private void movePos(float delta)`传给头部子视图。
+这一段代码也就是当recyclerView到顶部以后要进入刷新头部时候执行的。其中最重要的还是`willMovePos(offsetY)`，这个方法把偏移量`offsetY`传给`willMovePos`然后再通过`private void movePos(float delta)`传给头部子视图。这里涉及到一些Android的View事件传递，不了解的可以移步:http://codekk.com/blogs/detail/54cfab086c4761e5001b253e
 
 >#### 3.[`FlyRefreshLayout`](https://github.com/race604/FlyRefresh/blob/master/library/src/main/java/com/race604/flyrefresh/FlyRefreshLayout.java)
 
@@ -202,3 +202,5 @@ convert -coalesce animation.gif frame.png
 同时在下拉的过程中应该注意到山脉和树干的变化，这里作者把它放到另一个类`MountanScenceView`中实现，具体请看2.1.3
 
 >#### 4.[`MountanScenceView`](https://github.com/race604/FlyRefresh/blob/master/library/src/main/java/com/race604/flyrefresh/internal/MountanScenceView.java)
+
+>>这个类继承了`View`,实现了最出彩的山脉和树木弯曲的动画。因为山脉按照远近分为三层景深，近处的山的颜色比较深，而且随着下拉的时候也会向下移动，并且呈现视差，并且伴随树的弯曲，这是整个动画的点睛之笔。因为在移动过程中，山脉图片始终要充满整个屏幕，所以用单纯的图片是不太现实的，所以这里用到的是`Path`来绘制整个场景。

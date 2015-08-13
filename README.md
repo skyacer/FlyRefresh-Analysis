@@ -335,3 +335,37 @@ convert -coalesce animation.gif frame.png
 
 >>>  这里对是否是振动状态进行了判断，最后的方法有必要提一下`postInvalidate()`，这个方法是`View`里的，作用就是在UI线程以外的地方通知UI线程来重绘界面
 
+>#### 5.[`SampleItemAnimator`](https://github.com/race604/FlyRefresh/blob/master/app/src/main/java/com/race604/flyrefresh/sample/SampleItemAnimator.java)
+
+>>最后说一下SampleItemAnimator这个类，这个类继承了BaseItemAnimator，实现了新的item加入列表时候的动画，主要包含三个方法：
+
+>>>  protected void preAnimateAddImpl(RecyclerView.ViewHolder holder)
+
+>>>  protected void animateAddImpl(final RecyclerView.ViewHolder holder) 
+
+>>>  protected void animateRemoveImpl(RecyclerView.ViewHolder viewHolder) 
+
+>>>这三个方法看方法名也大概知道是做什么用的了，第一个是在加入新item加入列表之前的动画，第二个时加入时候的动画，第三个是移除item的动画。这里给出第二个的实现代码：
+
+>>> ``` java 
+
+>>> protected void animateAddImpl(final RecyclerView.ViewHolder holder) {
+>>>        View target = holder.itemView;
+>>>        View icon = target.findViewById(R.id.icon);
+>>>        Animator swing = ObjectAnimator.ofFloat(icon, "rotationX", 45, 0);
+>>>        swing.setInterpolator(new OvershootInterpolator(5));
+
+>>>        View right = holder.itemView.findViewById(R.id.right);
+>>>        Animator rotateIn = ObjectAnimator.ofFloat(right, "rotationY", 90, 0);
+>>>        rotateIn.setInterpolator(new DecelerateInterpolator());
+>>>
+>>>        AnimatorSet animator = new AnimatorSet();
+>>>        animator.setDuration(getAddDuration());
+>>>        animator.playTogether(swing, rotateIn);
+
+>>>        animator.start();
+>>>    }
+>>> ``` 
+
+
+>>>这里我们可以看到实现动画的代码之前也有提到过类似的，这里其实就是一个动画集合，使用到了插值器，主要的动画是icon 的晃动和内容的 3D 旋转

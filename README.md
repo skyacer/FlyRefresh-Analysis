@@ -94,6 +94,7 @@ convert -coalesce animation.gif frame.png
 
 
 ##2. 详细设计
+>类图设计：![ClassStructure](image/ClassStructure.jpg)  
 
 ###2.1 类详细介绍
 

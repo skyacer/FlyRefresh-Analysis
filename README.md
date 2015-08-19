@@ -4,7 +4,7 @@ FlyRefresh 源码解析
 > 本文为 [FlyRefresh](https://github.com/android-cn/android-open-project-analysis) 中 FlyRefresh 部分  
 > 项目地址：[FlyRefresh](https://github.com/race604/FlyRefresh)，分析的版本：[5299e8b](https://github.com/race604/FlyRefresh/commit/5299e8b969aab63fc1fde0a5423b19a61cded53b "Commit id is 5299e8b969aab63fc1fde0a5423b19a61cded53b]")，Demo 地址：[fly-refresh-demo](https://github.com/aosp-exchange-group/android-open-project-demo/tree/master/fly-refresh-demo)  
 
-> 分析者：[skyacer](http://github.com/skyacer)，分析状态：未完成，校对者：[Trinea](https://github.com/trinea)，校对状态：未开始  
+> 分析者：[skyacer](http://github.com/skyacer)，分析状态：完成，校对者：[Trinea](https://github.com/trinea)，校对状态：未开始  
 
 ##1. 功能介绍  
 
@@ -12,7 +12,7 @@ FlyRefresh 源码解析
 
 ###1.1 **完成时间**  
 
-- `2015-08-08`更新 
+- `2015-08-19`更新 
 
 
 
@@ -370,3 +370,7 @@ convert -coalesce animation.gif frame.png
 
 
 >>这里我们可以看到实现动画的代码之前也有提到过类似的，这里其实就是一个动画集合，使用到了插值器，主要的动画是icon 的晃动和内容的 3D 旋转
+
+##3. 流程设计
+
+>流程设计：![FlowChart](image/FlyRfresh-flow-chart.jpg)  
